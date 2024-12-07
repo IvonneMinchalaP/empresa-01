@@ -11,6 +11,7 @@
     ></dx-button>
   </div>
 
+  
   <!-- DataGrid con la información de los empleados -->
 
   <dx-data-grid 
@@ -33,12 +34,18 @@
     <dxi-column dataField="email" caption="Correo"></dxi-column>
     <dxi-column dataField="puesto" caption="Puesto"></dxi-column>
     <dxi-column dataField="telefono" caption="Teléfono"></dxi-column>
-    <!-- <dxi-column type="buttons">
-      <dxi-button icon="edit" hint="Editar" (onClick)="actualizarEmpleado($event.row.data)"></dxi-button>
-      <dxi-button icon="trash" hint="Eliminar" (onClick)="eliminarEmpleado($event.row.data.id)"></dxi-button>
+     <dxi-column type="buttons">
+      <dx-button
+          icon="edit"
+          type="success"
+          (onClick)="actualizarEmpleado($event)"
+        >
+        </dx-button>
+      <dxi-button icon="edit" hint="Editar" (onClick)="actualizarEmpleado($event)"></dxi-button>
+      <dxi-button icon="trash" hint="Eliminar" (onClick)="eliminarEmpleado($event)"></dxi-button>
 
-    </dxi-column> -->
-
+    </dxi-column> 
+  
   </dx-data-grid>
 
   <!-- Popup para Agregar/Actualizar -->
