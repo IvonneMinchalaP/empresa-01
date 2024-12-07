@@ -1,0 +1,8 @@
+<div class="container">
+    <h2>Empresas</h2>
+    <dx-button text="Agregar Empresa" (onClick)="agregarEmpresa()"></dx-button>
+    <dx-button text="Actualizar Empresa" (onClick)="actualizarEmpresa(empresas[0]?.id)"></dx-button>
+    <dx-button text="Eliminar Empresa" (onClick)="eliminarEmpresa(empresas[0]?.id)"></dx-button>
+  
+    <dx-data-grid [dataSource]="empresas" [showBorders]="true"></dx-data-grid>
+  </div>
