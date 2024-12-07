@@ -1,20 +1,67 @@
+/* Contenedor principal */
 .container {
+  margin: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.titulo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Botón Agregar Empleado */
+.button-container {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+/* Formulario en el popup */
+.popup-content {
   padding: 20px;
 }
 
-dx-button {
-  margin: 10px 5px;
-}
-
+/* Estilo para cada grupo de campos */
 .form-group {
   margin-bottom: 15px;
 }
 
-.form-actions {
-  margin-top: 20px;
-  text-align: center;
+.form-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
 }
 
-.popup-content {
+/* Botones en el popup */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.form-actions dx-button {
+  width: 48%;
+}
+::ng-deep #events #clear {
+  float: right;
+}
+
+::ng-deep #events {
+  background-color: rgba(191, 191, 191, 0.15);
   padding: 20px;
+  margin-top: 20px;
+}
+
+::ng-deep #events ul li {
+  padding: 7px 0;
+  border-bottom: 1px solid #c38b8b;
+}
+
+::ng-deep #events ul li:last-child {
+  border-bottom: none;
 }

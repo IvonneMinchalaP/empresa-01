@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EmpleadosService } from 'src/app/servicio/empleados.service';
+import { DxDataGridComponent } from 'devextreme-angular';
 
 @Component({
   selector: 'app-empleados',
@@ -15,6 +16,8 @@ export class EmpleadosComponent {
   isUpdating = false; 
   currentEmpleado: any = { id: null, nombre: '', email: '', puesto: '', telefono: '' };
 
+  events: Array<string> = [];
+  
   constructor(private empleadosService: EmpleadosService) {
     this.loadEmpleados();
   }
@@ -55,6 +58,15 @@ export class EmpleadosComponent {
     this.empleadosService.deleteEmpleado(id);
     this.loadEmpleados();
   }
+  // Cancelar la edición o adición
+  cancelarEdicion() {
+    this.isPopupVisible = false;
+  }
+
+  clearEvents() {
+    this.events = [];
+  }
+
 }
 
 

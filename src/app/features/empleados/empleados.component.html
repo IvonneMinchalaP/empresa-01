@@ -1,23 +1,31 @@
 <div class="container">
-  <h2>Empleados</h2>
-<!-- 
-  <dx-button
-    text="Agregar Empleado"
-    (onClick)="agregarEmpleado()"
-  ></dx-button> -->
+  <h2 class="titulo">Empleados</h2>
+  <!-- Botón Agregar Empleado -->
+  <div class="button-container">
+    <dx-button
+      text="Agregar Empleado"
+      icon="add"
+      type="default"
+      stylingMode="contained"
+      (onClick)="agregarEmpleado()"
+    ></dx-button>
+  </div>
+
+  <!-- DataGrid con la información de los empleados -->
 
   <dx-data-grid 
+  
     [dataSource]="empleados" 
     [showBorders]="true" 
     [rowAlternationEnabled]="true" 
     [columnAutoWidth]="true" >
     <dxo-editing
     mode="row"
-    [allowAdding]="true"
+    [allowAdding]="false"
     [allowUpdating]="true"
-    [allowDeleting]="true"
-  >
+    [allowDeleting]="true">
   </dxo-editing>
+  <dxi-column dataField="id" [allowEditing]="false"></dxi-column>
     <dxo-paging [enabled]="true" [pageSize]="5"></dxo-paging>
     <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
     <dxi-column dataField="id" caption="ID" [width]="70"></dxi-column>
@@ -25,10 +33,12 @@
     <dxi-column dataField="email" caption="Correo"></dxi-column>
     <dxi-column dataField="puesto" caption="Puesto"></dxi-column>
     <dxi-column dataField="telefono" caption="Teléfono"></dxi-column>
-    <dxi-column type="buttons">
-      <!-- <dxi-button icon="edit" hint="Editar" (onClick)="actualizarEmpleado($event.row.data)"></dxi-button>
-      <dxi-button icon="trash" hint="Eliminar" (onClick)="eliminarEmpleado($event.row.data.id)"></dxi-button> -->
-    </dxi-column>
+    <!-- <dxi-column type="buttons">
+      <dxi-button icon="edit" hint="Editar" (onClick)="actualizarEmpleado($event.row.data)"></dxi-button>
+      <dxi-button icon="trash" hint="Eliminar" (onClick)="eliminarEmpleado($event.row.data.id)"></dxi-button>
+
+    </dxi-column> -->
+
   </dx-data-grid>
 
   <!-- Popup para Agregar/Actualizar -->
@@ -59,8 +69,22 @@
           <dx-text-box [(value)]="currentEmpleado.telefono"></dx-text-box>
         </div>
         <div class="form-actions">
-          <dx-button text="Guardar" (onClick)="guardarEmpleado()"></dx-button>
+          <dx-button
+            text="Guardar"
+            icon="save"
+            type="success"
+            stylingMode="contained"
+            (onClick)="guardarEmpleado()">
+          </dx-button>
+          <dx-button
+            text="Cancelar"
+            icon="close"
+            type="danger"
+            stylingMode="outlined"
+            (onClick)="cancelarEdicion()">
+          </dx-button>
         </div>
+
       </form>
     </div>
   </dx-popup>
