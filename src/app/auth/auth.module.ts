@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { DxButtonModule, DxFormModule } from 'devextreme-angular';
 import { AppRoutingModule } from '../app-routing.module';
 import { RegisterComponent } from './register/register.component';
+import { Router } from '@angular/router';
 
 
 

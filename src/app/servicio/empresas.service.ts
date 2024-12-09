@@ -5,8 +5,20 @@ import { Injectable } from '@angular/core';
 })
 export class EmpresasService {
   private empresas = [
-    { id: 1, nombre: 'Empresa 1' },
-    { id: 2, nombre: 'Empresa 2' }
+    { id: 1, 
+      nombre: 'Empresa A', 
+      email: 'contacto@empresaA.com', 
+      telefono: '123456789',
+      direccion: 'Calle 1', 
+      fechaFundacion: '2000-01-01'
+    },
+    
+    { id: 2,
+      nombre: 'Empresa B', 
+      email: 'contacto@empresaB.com', 
+      telefono: '987654321',
+      direccion: 'Calle 2', 
+      fechaFundacion: '2010-05-15' },
   ];
 
   getEmpresas() {

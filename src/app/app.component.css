@@ -1,0 +1,38 @@
+.sidebar {
+    background-color: #f8f9fa;
+    padding: 15px;
+    width: 200px;
+    position: fixed;
+    height: 100%;
+  }
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  .sidebar ul li {
+    margin-bottom: 10px;
+  }
+  .sidebar ul li a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  .sidebar ul li a.active {
+    font-weight: bold;
+  }
+
+  .footer {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+  }

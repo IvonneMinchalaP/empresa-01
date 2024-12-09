@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadosService } from 'src/app/servicio/empleados.service';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { DxDataGridModule, DxDataGridComponent } from 'devextreme-angular';
 
 @Component({
   selector: 'app-empleados',
@@ -8,63 +8,65 @@ import { DxDataGridComponent } from 'devextreme-angular';
   styleUrls: ['./empleados.component.css']
 })
 export class EmpleadosComponent {
-
+ 
   empleados: any[] = [];
   // Controla la visibilidad del popup
   isPopupVisible = false; 
   // Determina si es agregar o actualizar
   isUpdating = false; 
-  currentEmpleado: any = { id: null, nombre: '', email: '', puesto: '', telefono: '' };
+  currentEmpleado: any = {  nombre: '', email: '', puesto: '', telefono: '', fechaIngreso: null};
 
-  events: Array<string> = [];
   
-  constructor(private empleadosService: EmpleadosService) {
+  constructor(private empleadosService: EmpleadosService  ) {
+  }
+
+  ngOnInit(): void {
     this.loadEmpleados();
   }
 
+  // Cargar la lista de empleados
   loadEmpleados() {
     this.empleados = this.empleadosService.getEmpleados();
   }
 
   agregarEmpleado() {
     this.isUpdating = false;
-    this.currentEmpleado = { id: null, nombre: '', email: '', puesto: '', telefono: '' };
+    this.currentEmpleado = {  nombre: '', apeliddo: '', email: '', puesto: '', telefono: '', fechaIngreso: null};
     // Muestra el popup
     this.isPopupVisible = true; 
   }
-
-  actualizarEmpleado(empleado: any) {
-    this.isUpdating = true;
-    // Carga los datos del empleado seleccionado
-    this.currentEmpleado = { ...empleado }; 
-    // Muestra el popup
+  
+  editarEmpleado(event: any) {
+   this.isUpdating = true;
+     //Carga los datos del empleado seleccionado
+    this.currentEmpleado = { ...event.row.data}; 
+    this.currentEmpleado = { ...this.empleados}; 
+     //Muestra el popup
     this.isPopupVisible = true; 
   }
 
   guardarEmpleado() {
+    
     if (this.isUpdating) {
-      this.empleadosService.updateEmpleado(this.currentEmpleado.id, this.currentEmpleado);
+      this.empleadosService.updateEmpleado(this.currentEmpleado.id, this.currentEmpleado );
+      //this.currentEmpleado = { ...event.row.data };
     } else {
       this.empleadosService.addEmpleado({ ...this.currentEmpleado, id: Date.now() });
     }
     // Oculta el popup
     this.isPopupVisible = false; 
-    // Recarga los datos
+    // Recarga los datoss
     this.loadEmpleados(); 
   }
 
-  eliminarEmpleado(id: any) {
-    console.log(id);
+  eliminarEmpleado(event:any) {
+    const id = event.row.data.id;
     this.empleadosService.deleteEmpleado(id);
     this.loadEmpleados();
   }
   // Cancelar la edición o adición
   cancelarEdicion() {
     this.isPopupVisible = false;
-  }
-
-  clearEvents() {
-    this.events = [];
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit  } from '@angular/core';
 import { EmpresasService } from 'src/app/servicio/empresas.service';
 
 @Component({
@@ -7,10 +7,14 @@ import { EmpresasService } from 'src/app/servicio/empresas.service';
   styleUrls: ['./empresas.component.css']
 })
 export class EmpresasComponent {
-
   empresas: any[] = [];
+  isPopupVisible = false;
+  isUpdating = false;
+  currentEmpresa: any = { nombre: '', email: '', telefono: '', direccion: '', fechaFundacion: null };
 
-  constructor(private empresasService: EmpresasService) {
+  constructor(private empresasService: EmpresasService) {}
+
+  ngOnInit(): void {
     this.loadEmpresas();
   }
 
@@ -19,17 +23,38 @@ export class EmpresasComponent {
   }
 
   agregarEmpresa() {
-    this.empresasService.addEmpresa({ id: Date.now(), nombre: 'Nueva Empresa' });
-    this.loadEmpresas();
+    this.isUpdating = false;
+    this.currentEmpresa = { nombre: '', email: '', telefono: '', direccion: '', fechaFundacion: null };
+    this.isPopupVisible = true;
   }
 
-  actualizarEmpresa(id: number) {
-    this.empresasService.updateEmpresa(id, { nombre: 'Empresa Actualizada' });
-    this.loadEmpresas();
+  editarEmpresa(data: any) {
+    this.isUpdating = true;
+  //this.currentEmpresa = { ...event.row.data };
+  // Carga la empresa seleccionada
+  this.currentEmpresa = {...data}; // Guarda la empresa seleccionada
+  this.isPopupVisible = true;
+  }
+  
+
+  guardarEmpresa() {
+    if (this.isUpdating) {
+       this.empresasService.updateEmpresa(this.currentEmpresa.id, this.currentEmpresa);
+    } else {
+      this.empresasService.addEmpresa({ ...this.currentEmpresa, id: Date.now() });
+    }
+     this.isPopupVisible = false;
+     this.loadEmpresas();
   }
 
-  eliminarEmpresa(id: number) {
+ 
+  eliminarEmpresa(event: any) {
+    const id = event.row.data.id;
     this.empresasService.deleteEmpresa(id);
     this.loadEmpresas();
+  }
+
+  cancelarEdicion() {
+    this.isPopupVisible = false;
   }
 }
