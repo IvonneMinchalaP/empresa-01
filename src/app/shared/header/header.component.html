@@ -1,3 +1,13 @@
 <header class="header">
-    <h1>Mi Aplicación</h1>
-  </header>
+  <div class="header-info">
+    <h1>{{ title }}</h1>
+    <div class="user-info">
+      <span>{{ userInfo.name }} - {{ userInfo.role }}</span>
+    </div>
+  </div>
+  <nav>
+    <ul>
+      <li *ngFor="let link of navigationLinks"><a href="#">{{ link }}</a></li>
+    </ul>
+  </nav>
+</header>

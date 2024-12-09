@@ -1,9 +1,13 @@
-<div class="sidebar">
-    <h3>Menú</h3>
+<aside class="sidebar">
+  <div class="sidebar-menu">
     <ul>
-      <li><a routerLink="/empresas" routerLinkActive="active">Empresa</a></li>
-      <li><a routerLink="/empleados" routerLinkActive="active">Empleados</a></li>
-      <li><a routerLink="/login" routerLinkActive="active">Cerrar Session</a></li>
-
+      <li *ngFor="let section of sections"><a href="#">{{ section }}</a></li>
     </ul>
   </div>
+  <div class="user-settings">
+    <label>Notifications</label>
+    <input type="checkbox" [checked]="userSettings.notifications" />
+    <label>Dark Mode</label>
+    <input type="checkbox" [checked]="userSettings.darkMode" />
+  </div>
+</aside>

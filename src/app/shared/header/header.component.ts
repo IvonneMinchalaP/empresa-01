@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-
+  title = 'Mi Aplicación Profesional';
+  navigationLinks = ['Home', 'Empleados', 'Empresas', 'Cerrar Session'];
+  userInfo = { name: 'John ', role: 'Administrator' };
 }
+

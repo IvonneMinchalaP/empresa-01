@@ -32,7 +32,8 @@ import { FeaturesComponent } from './features.component';
     FormsModule,
     ReactiveFormsModule,
     DxDateBoxModule,
-    SharedModule
+    SharedModule,
+    
   ],
   providers: [
     EmpleadosService,

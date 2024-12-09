@@ -4,6 +4,7 @@ import { AuthRoutingModule } from './auth/auth-routing';
 import { FeaturesRoutingModule } from './features/features-routing';
 import { EmpresasComponent } from './features/empresas/empresas.component';
 import { LoginComponent } from './auth/login/login.component';
+import { FeaturesComponent } from './features/features.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
